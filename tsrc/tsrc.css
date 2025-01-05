@@ -6,98 +6,116 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: #222;
-    color: #fff;
+    font-family: 'Arial', sans-serif;
+    background-color: #1a1a1a;
+    color: #f5f5f5;
     line-height: 1.6;
     margin: 0;
     padding: 0;
 }
 
 header {
-    background-color: #333;
-    color: #fff;
+    background-color: #2c2c2c;
+    color: #f5f5f5;
     text-align: center;
-    padding: 1rem 0;
+    padding: 1.5rem 0;
+    border-bottom: 2px solid #444;
 }
 
 .title {
-    font-size: 2rem;
+    font-size: 2.5rem;
+    font-weight: bold;
 }
 
 .container {
     max-width: 800px;
-    margin: 20px auto;
+    margin: 30px auto;
     padding: 0 20px;
+    text-align: center;
 }
 
 .input-group {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    margin-bottom: 20px;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 25px;
 }
 
 #torrents,
 #query {
     flex: 1;
-    padding: 10px;
-    margin-right: 10px;
+    max-width: 300px;
+    padding: 12px;
     border: 1px solid #555;
     border-radius: 5px;
-    font-size: 14px;
-    color: #fff;
-    background-color: #333;
+    font-size: 16px;
+    color: #f5f5f5;
+    background-color: #2c2c2c;
     outline: none;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+#torrents:focus,
+#query:focus {
+    border-color: #007bff;
+    background-color: #3b3b3b;
 }
 
 #btn-submit {
-    padding: 10px 20px;
+    padding: 12px 25px;
     background-color: #007bff;
-    color: #fff;
+    color: #f5f5f5;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 #btn-submit:hover {
     background-color: #0056b3;
+    transform: scale(1.05);
 }
 
 .results {
-    background-color: #333;
+    background-color: #2c2c2c;
     border-radius: 5px;
     padding: 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .results p {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
 }
 
 .results a {
     display: block;
     margin-bottom: 15px;
     padding: 15px;
-    color: #fff;
+    color: #007bff;
     text-decoration: none;
     border-radius: 5px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
     word-break: break-word;
-    font-size: 14px;
+    font-size: 1rem;
+    background-color: #2c2c2c;
 }
 
 .results a:hover {
     background-color: #444;
+    color: #fff;
 }
 
 .torrent-item {
     border-bottom: 1px solid #555;
     padding: 15px 0;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
+    gap: 10px;
 }
 
 .torrent-item:last-child {
@@ -105,29 +123,52 @@ header {
 }
 
 .torrent-link {
-    font-size: 16px;
+    font-size: 1.1rem;
     color: #007bff;
     font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.torrent-link:hover {
+    color: #0056b3;
 }
 
 .torrent-info {
-    font-size: 12px;
+    font-size: 0.9rem;
     display: flex;
     flex-wrap: wrap;
+    gap: 15px;
 }
 
 .torrent-info span {
-    margin-right: 20px;
+    background-color: #444;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #f5f5f5;
 }
 
 footer {
-    background-color: #333;
-    color: #fff;
+    background-color: #2c2c2c;
+    color: #f5f5f5;
     text-align: center;
     padding: 1rem 0;
+    border-top: 2px solid #444;
+    margin-top: 30px;
+    font-size: 0.9rem;
 }
 
-/* Android Specific */
+/* Message Styling */
+.message {
+    background-color: #444;
+    color: #ffcc00;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    text-align: center;
+}
+
+/* Mobile Responsiveness */
 @media only screen and (max-width: 600px) {
     .container {
         padding: 0 10px;
@@ -135,6 +176,7 @@ footer {
 
     .input-group {
         flex-direction: column;
+        align-items: stretch;
     }
 
     #torrents,
@@ -142,5 +184,14 @@ footer {
     #btn-submit {
         margin-bottom: 10px;
         width: 100%;
+    }
+
+    .torrent-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .torrent-info span {
+        margin-bottom: 5px;
     }
 }
