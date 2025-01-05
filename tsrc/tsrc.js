@@ -1,3 +1,25 @@
+// Function to handle URL parameters
+function getURLParameter(name) {
+    const params = new URLSearchParams(window.location.search);
+    return params.get(name);
+}
+
+// Function to initialize the site dropdown based on URL parameter
+function initializeSiteFromURL() {
+    const siteFromURL = getURLParameter("site");
+    if (siteFromURL) {
+        const siteDropdown = document.getElementById("torrents");
+        const options = Array.from(siteDropdown.options);
+        const match = options.find(option => option.value === siteFromURL);
+        if (match) {
+            siteDropdown.value = siteFromURL;
+        } else {
+            console.warn(`Site "${siteFromURL}" not found in the dropdown options.`);
+        }
+    }
+}
+
+// Modified getTorrent function
 async function getTorrent() {
     let siteName = document.getElementById("torrents").value;
 
@@ -9,7 +31,6 @@ async function getTorrent() {
     if (query !== '') {
         const api = "https://api.api-zero.workers.dev/" + siteName + "/" + query;
 
-        // Define the custom user agent
         try {
             const response = await fetch(api);
             const data = await response.json();
@@ -59,8 +80,6 @@ function displayTorrents(torrents) {
             date.textContent = "Date: " + torrent.Date;
             torrentInfo.appendChild(date);
 
-            // Add more information as needed
-
             torrentItem.appendChild(torrentLink);
             torrentItem.appendChild(torrentInfo);
 
@@ -68,3 +87,6 @@ function displayTorrents(torrents) {
         });
     }
 }
+
+// Initialize site selection on page load
+window.addEventListener("DOMContentLoaded", initializeSiteFromURL);
